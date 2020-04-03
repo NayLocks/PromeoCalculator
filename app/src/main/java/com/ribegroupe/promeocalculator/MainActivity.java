@@ -99,21 +99,25 @@ public class MainActivity extends AppCompatActivity {
         multiple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calcul.setText(calcul.getText().toString() + " * ");
             }
         });
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calcul.setText(calcul.getText().toString() + " + ");
             }
         });
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calcul.setText(calcul.getText().toString() + " - ");
             }
         });
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calcul.setText(calcul.getText().toString() + " / ");
             }
         });
 
@@ -142,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 double nb1 = Integer.parseInt(calculEC[0]);
                 double nb2 = Integer.parseInt(calculEC[2]);
                 String operator = calculEC[1];
+                Service resultat = new Service(nb1, nb2, operator);
+                result.setText(resultat.calcul());
                 isFinished = true;
             }
         });
@@ -149,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double nb1 = Integer.parseInt(calcul.getText().toString());
+                Service resultat = new Service(nb1, 0, "%");
+                result.setText(resultat.calcul());
                 isFinished = true;
             }
         });
@@ -164,62 +172,81 @@ public class MainActivity extends AppCompatActivity {
         bt_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '0');
             }
         });
 
         bt_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '1');
             }
         });
 
         bt_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '2');
             }
         });
 
         bt_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '3');
             }
         });
 
         bt_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '4');
             }
         });
 
         bt_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '5');
             }
         });
 
         bt_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '6');
             }
         });
 
         bt_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '7');
             }
         });
 
         bt_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '8');
             }
         });
 
         bt_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifBoll(calcul, result, lastCalcul);
+                calcul.setText(calcul.getText().toString() + '9');
             }
         });
-
     }
 }
