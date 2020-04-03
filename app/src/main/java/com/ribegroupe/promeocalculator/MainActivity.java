@@ -8,6 +8,13 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    //************** OPERATOR *************//
+    private Button multiple;
+    private Button plus;
+    private Button minus;
+    private Button divide;
+
+    //************** BT *************//
     private Button bt_0;
     private Button bt_1;
     private Button bt_2;
@@ -24,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //************** OPERATOR *************//
+        multiple = findViewById(R.id.multiple);
+        plus = findViewById(R.id.plus);
+        minus = findViewById(R.id.minus);
+        divide = findViewById(R.id.divide);
+
+
+        //************** BT *************//
         bt_0 = findViewById(R.id.bt_0);
         bt_1 = findViewById(R.id.bt_1);
         bt_2 = findViewById(R.id.bt_2);
@@ -35,6 +50,30 @@ public class MainActivity extends AppCompatActivity {
         bt_8 = findViewById(R.id.bt_8);
         bt_9 = findViewById(R.id.bt_9);
 
+        //************** OPERATOR EVENT *************//
+
+        multiple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        //************** BT EVENT *************//
         bt_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
