@@ -2,10 +2,13 @@ package com.ribegroupe.promeocalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import static java.lang.String.valueOf;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         if(isFinished && !clear){
             isFinished = false;
             lastCalcul.setText(calcul.getText().toString() + " = " + result.getText().toString());
-            calcul.setText("");
         }else if(isFinished && clear){
             isFinished = false;
             clear = false;
@@ -93,7 +95,10 @@ public class MainActivity extends AppCompatActivity {
         bt_8 = findViewById(R.id.bt_8);
         bt_9 = findViewById(R.id.bt_9);
 
-        final String lastResultat = "";
+        final SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+
+        String LC = preferences.getString("lastCalcul","");
+        lastCalcul.setText(LC);
 
         //************** OPERATOR EVENT *************//
         multiple.setOnClickListener(new View.OnClickListener() {
@@ -122,50 +127,69 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //************** BT FUNCTION EVENT *************//
-//        delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String resultat = calcul.getText().toString();
-//                int longueur = resultat.length();
-//                char test = resultat.charAt(longueur);
-//                result.setText(test);
-//            }
-//        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String resultat = calcul.getText().toString();
+                resultat = resultat.substring(0, resultat.length()-1);
+                calcul.setText(resultat);
+            }
+        });
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clear = true;
                 isFinished = true;
-                verifBoll(calcul, result, lastCalcul);
+                calcul.setText("");
+                result.setText("");
             }
         });
         bt_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String calculEC[] = calcul.getText().toString().split(" ");
-                double nb1 = Integer.parseInt(calculEC[0]);
-                double nb2 = Integer.parseInt(calculEC[2]);
-                String operator = calculEC[1];
-                Service resultat = new Service(nb1, nb2, operator);
-                result.setText(resultat.calcul());
-                isFinished = true;
+                String operator = "";
+                double nb1 = 0;
+                double nb2 = 0;
+                String calculAV = calcul.getText().toString();
+                int verifSpace = calculAV.indexOf(" ");
+                if(verifSpace != -1){
+                    String calculEC[] = calculAV.split(" ");
+                    nb1 = Double.parseDouble(calculEC[0]);
+                    nb2 = Double.parseDouble(calculEC[2]);
+                    operator = calculEC[1];
+                    Service calculService = new Service(nb1, nb2, operator);
+                    calcul.setText(valueOf(nb1) + " " + operator + " " + valueOf(nb2));
+                    result.setText(calculService.calcul());
+                    isFinished = true;
+                }else{
+                    nb1 = Integer.parseInt(calculAV);
+                    result.setText(valueOf(nb1));
+                    isFinished = true;
+                }
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.putString("lastCalcul",calcul.getText().toString() + " = " + result.getText().toString());
+                editor.commit();
             }
         });
         percent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double nb1 = Integer.parseInt(calcul.getText().toString());
+                String calculEC[] = calcul.getText().toString().split(" ");
+                double nb1 = Double.parseDouble(calculEC[0]);
                 Service resultat = new Service(nb1, 0, "%");
                 result.setText(resultat.calcul());
                 isFinished = true;
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.putString("lastCalcul",calcul.getText().toString() + " = " + result.getText().toString());
+                editor.commit();
             }
         });
-//        comma.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                calcul.setText(calcul.getText().toString() + ".");
-//            }
-//        });
+        comma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calcul.setText(calcul.getText().toString() + ".");
+            }
+        });
 
 
         //************** BT EVENT *************//

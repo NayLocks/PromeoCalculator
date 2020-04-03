@@ -23,6 +23,7 @@
     </LinearLayout>
 
     <Space
+        android:id="@+id/space2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -90,7 +91,7 @@
                     <Button
                         android:id="@+id/reset"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_margin="3sp"
                         android:layout_weight="1"
                         android:background="@color/colorRed"
@@ -98,24 +99,15 @@
                         android:textSize="50sp" />
 
                     <Button
-                        android:id="@+id/multiple"
+                        android:id="@+id/delete"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_margin="3sp"
                         android:layout_weight="1"
-                        android:background="@color/colorBlue"
-                        android:text="X"
-                        android:textSize="50sp" />
+                        android:background="@color/colorRed"
+                        android:text="Supp"
+                        android:textSize="48sp" />
 
-                    <Button
-                        android:id="@+id/divide"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3sp"
-                        android:layout_weight="1"
-                        android:background="@color/colorBlue"
-                        android:text="/"
-                        android:textSize="50sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -294,12 +286,13 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/delete"
+                    android:id="@+id/divide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3sp"
-                    android:background="@android:color/holo_green_dark"
-                    android:text="DEL"
+                    android:layout_weight="1"
+                    android:background="@color/colorBlue"
+                    android:text="/"
                     android:textSize="50sp" />
 
                 <Button
@@ -310,7 +303,17 @@
                     android:background="@color/colorBlue"
                     android:text="+"
                     android:textColor="@android:color/black"
-                    android:textSize="70sp" />
+                    android:textSize="50sp" />
+
+                <Button
+                    android:id="@+id/multiple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3sp"
+                    android:layout_weight="1"
+                    android:background="@color/colorBlue"
+                    android:text="X"
+                    android:textSize="50sp" />
 
                 <Button
                     android:id="@+id/minus"
@@ -319,7 +322,7 @@
                     android:layout_margin="3sp"
                     android:background="@color/colorBlue"
                     android:text="-"
-                    android:textSize="70sp" />
+                    android:textSize="50sp" />
 
                 <Button
                     android:id="@+id/bt_result"
@@ -329,7 +332,8 @@
                     android:background="@color/colorRed"
                     android:text="="
                     android:textAlignment="center"
-                    android:textSize="80sp" />
+                    android:textSize="50sp" />
+
             </LinearLayout>
         </LinearLayout>
 
